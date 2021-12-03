@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pet.mapper">
+    <select id="findAll" resultType="Pet">
+        select * from pet;
+    </select>
+    <insert id="add"parameterType="Pet">
+        INSERT INTO `demo1`.`pet`
+        (`petId`,
+         `petName`,
+         `petBreed`,
+         `petSex`,
+         `birthday`,
+         `description`
+        )
+        VALUES
+        (#{petId},
+         #{petName},
+         #{petBreed},
+         #{petSex},
+         #{birthday},
+         #{description}
+        );
+
+    </insert>
+    <update id="update" parameterType="Pet">
+
+        UPDATE `demo1`.`pet`
+        SET
+            petId = #{petId},
+            petName = #{petName},
+            petBreed = #{petBreed},
+            petSex = #{petSex},
+            birthday = #{birthday},
+            description = #{description}
+
+        WHERE
+            `petId` = #{petId} ;
+
+    </update>
+
+    <select id="findByName" parameterType="String" resultType="Pet">
+        select * from pet where petName = #{name};
+    </select>
+
+    <select id="findByBreed" resultType="Pet">
+        select * from pet where petBreed = #{breed};
+    </select>
+</mapper>
